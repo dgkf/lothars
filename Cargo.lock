@@ -15,12 +15,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "bytes"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
-
-[[package]]
 name = "funty"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -31,8 +25,8 @@ name = "lothars"
 version = "0.1.0"
 dependencies = [
  "bitvec",
- "bytes",
  "protobuf",
+ "protobuf-codegen",
  "protobuf-codegen-pure",
  "snap",
 ]
@@ -42,9 +36,6 @@ name = "protobuf"
 version = "2.27.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf7e6d18738ecd0902d30d1ad232c9125985a3422929b16c65517b38adc14f96"
-dependencies = [
- "bytes",
-]
 
 [[package]]
 name = "protobuf-codegen"

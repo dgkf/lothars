@@ -1,16 +1,16 @@
 // use std::fs;
-extern crate protobuf_codegen_pure;
 
-fn main() {   
-    println!("cargo:rerun-if-changed=protobufs/dota2/*.proto");
+fn main() {
+
+    // println!("cargo:rerun-if-changed=protobufs/dota2/*.proto");
 
     // let protos_paths = fs::read_dir("protobufs/dota2/demo.").unwrap()
     //     .map(|p| p.unwrap().path());
 
     protobuf_codegen_pure::Codegen::new() 
         .customize(protobuf_codegen_pure::Customize {
-            carllerche_bytes_for_bytes: Some(true),
-            carllerche_bytes_for_string: Some(true),
+            expose_oneof: Some(true),
+            expose_fields: Some(true),
             gen_mod_rs: Some(true),
             ..Default::default()
         })

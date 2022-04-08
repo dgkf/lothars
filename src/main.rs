@@ -5,7 +5,9 @@ use protobuf::CodedInputStream;
 
 mod protobufs;
 mod packets;
-use crate::packets::*;
+mod utils;
+
+use crate::packets::messages::*;
 
 fn main() -> std::io::Result<()> {
     let mut file = File::open("replays/example.dem")?;
@@ -17,13 +19,11 @@ fn main() -> std::io::Result<()> {
     let _spawngroups_packet_pos = replay.read_fixed32()?;
     println!("Replay Type: {}", std::str::from_utf8(&engine_type).unwrap_or("Unknown"));
 
-    for i in 0..30 {
-        // next packet metadata
-        let metadata = CDemoPacketMetadata::read_from(&mut replay)?;
-        println!("[{:?}] {:?}", i, metadata);
-
-        // read next packet
-        let message = metadata.read_message_from(&mut replay)?;
+    loop {
+        match read_next_message_from(&mut replay) {
+            Ok(message) => println!("{message}"),
+            _           => break,
+        }
     }
 
     Ok(())
